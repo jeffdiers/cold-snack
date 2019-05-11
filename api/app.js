@@ -1,12 +1,12 @@
-import createError from 'http-errors'
-import express from 'express'
-import path from 'path'
-import cookieParser from 'cookie-parser'
-import logger from 'morgan'
-import mongoose from 'mongoose'
+const createError = require('http-errors')
+const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
+const mongoose = require('mongoose')
 require('dotenv').config();
 
-import indexRouter from './routes/index'
+const indexRouter = require('./routes/index')
 
 /**
  * This function is the callback if successfully connected to MongoDB.
