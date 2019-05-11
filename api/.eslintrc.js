@@ -1,7 +1,6 @@
 module.exports = {
   env: {
     browser: true,
-    commonjs: true,
     es6: true,
   },
   extends: 'airbnb-base',
@@ -13,5 +12,6 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   },
 };

@@ -21,4 +21,5 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': ['off', 'always']
   },
+  parser: "babel-eslint"
 };
