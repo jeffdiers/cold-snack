@@ -88,18 +88,18 @@ function onListening() {
 /**
  * This function is the callback if successfully connected to MongoDB.
  */
-// function onSuccess() {
+function onSuccess() {
   /**
    * Listen on provided port, on all network interfaces.
    */
   server.listen(port);
   server.on('error', onError);
   server.on('listening', onListening);
-// }
+}
 
 /**
  * Connects to the MongoDB
  */
-// mongoose.connect(process.env.MONGODB_PATH, {
-//   useNewUrlParser: true,
-// }).then(onSuccess, onError);
+mongoose.connect(process.env.MONGODB_PATH, {
+  useNewUrlParser: true,
+}).then(onSuccess, onError);
