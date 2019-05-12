@@ -3,31 +3,9 @@ import express from 'express'
 import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
-import mongoose from 'mongoose'
 require('dotenv').config();
 
 import indexRouter from './routes/index'
-
-/**
- * This function is the callback if successfully connected to MongoDB.
- */
-function onSuccess() {
-    console.log("MongoDB: Successfully conected to the MongoDB.");
-}
-
-/**
- * This function is the callback if there was an error while attempting to connect.
- */
-function onError() {
-    console.log("MongoDB: There was an error connecting to the MongoDB.");
-}
-
-/**
- * Connects to the MongoDB
- */
-mongoose.connect(process.env.MONGODB_PATH, {
-    useNewUrlParser: true
-}).then(onSuccess, onError);
 
 const app = express();
 
