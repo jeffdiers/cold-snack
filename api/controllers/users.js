@@ -18,21 +18,17 @@ function random32ByteString() {
  * @param res The html response.
  */
 export const getAll = (req, res) => {
-  res.json({
-    hello: 'success',
-    env: process.env.MONGODB_PATH,
-  })
-  // User.find().lean().exec((err, users) => {
-  //   if (err) {
-  //     res.send(err);
-  //     return;
-  //   }
-  //   res.json({
-  //     users: users.map(user => ({
-  //       ...user,
-  //     })),
-  //   });
-  // });
+  User.find().lean().exec((err, users) => {
+    if (err) {
+      res.send(err);
+      return;
+    }
+    res.json({
+      users: users.map(user => ({
+        ...user,
+      })),
+    });
+  });
 };
 
 /**
