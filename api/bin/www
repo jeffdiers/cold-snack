@@ -50,7 +50,6 @@ const server = http.createServer(app);
  */
 
 function onError(error) {
-  console.log('ERROR', error)
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -90,7 +89,6 @@ function onListening() {
  * This function is the callback if successfully connected to MongoDB.
  */
 function onSuccess() {
-  console.log('SUCCES')
   /**
    * Listen on provided port, on all network interfaces.
    */

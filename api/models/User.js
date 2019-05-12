@@ -14,29 +14,20 @@ const userSchema = Schema({
   lastName: String,
   state: String,
   dateOfBirth: Date,
-  facebookId: String,
-  totalPoints: {
-    type: Number,
-    default: 0,
-  },
-  points: {
-    type: Number,
-    default: 0,
+  userName: {
+    type: String,
+    required: true,
   },
   hashedPassword: {
     type: String,
-    required: false, // default is true. form needs field for password
+    required: true,
   },
   salt: {
     type: String,
-    required: false, // default is true. form needs field for password
+    required: true,
   },
   created: {
     type: Date, default: Date.now,
-  },
-  picture: {
-    type: mongoose.Schema.Types.Mixed,
-    default: '/users/default-avatar.jpg',
   },
 },
 
