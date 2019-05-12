@@ -20,7 +20,7 @@ function random32ByteString() {
 export const getAll = (req, res) => {
   res.json({
     hello: 'success',
-    env: process.env.HELLO,
+    env: process.env.MONGODB_PATH,
   })
   // User.find().lean().exec((err, users) => {
   //   if (err) {
