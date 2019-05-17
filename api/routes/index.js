@@ -33,7 +33,7 @@ router.post('/users/login', auth('basic'), users.postLogin);
 /**
  * Posts a new User entry in the database.
  */
-router.post('/users/', auth('admin'), users.forPostQuery);
+router.post('/users/', auth('basic'), users.forPostQuery);
 
 /**
  * Deletes a User entry in the database.
