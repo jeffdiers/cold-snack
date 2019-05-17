@@ -1,11 +1,12 @@
-import createError from 'http-errors'
-import express from 'express'
-import path from 'path'
-import cookieParser from 'cookie-parser'
-import logger from 'morgan'
-require('dotenv').config();
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import indexRouter from './routes/index';
 
-import indexRouter from './routes/index'
+require('dotenv').config();
+require('./config/passport');
 
 const app = express();
 
