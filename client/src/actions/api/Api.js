@@ -23,8 +23,9 @@ const logFailure = (url, request, error) => {
 const handleFailedRequest = (fetchUrl, request, response, reject) => {
   response.json().then(
     (data) => {
+      console.log(data)
       logRejection(fetchUrl, request, response, data);
-      reject(new Error(data));
+      reject(data);
     },
     () => {
       logRejection(fetchUrl, request, response);
@@ -34,38 +35,38 @@ const handleFailedRequest = (fetchUrl, request, response, reject) => {
 };
 
 class Api {
-    static get = (url) => {
+    static get = url => (
       Api.go(url, {
         method: 'get',
-      });
-    };
+      })
+    );
 
-    static post = (url, body) => {
+    static post = (url, body) => (
       Api.go(url, {
         method: 'post',
         body,
-      });
-    };
+      })
+    );
 
-    static put = (url, body) => {
+    static put = (url, body) => (
       Api.go(url, {
         method: 'put',
         body,
-      });
-    };
+      })
+    );
 
-    static patch = (url, body) => {
+    static patch = (url, body) => (
       Api.go(url, {
         method: 'patch',
         body,
-      });
-    };
+      })
+    );
 
-    static delete = (url) => {
+    static delete = url => (
       Api.go(url, {
         method: 'delete',
-      });
-    };
+      })
+    );
 
     static go = (url, request = {}) => {
       const headers = new Headers({ Accept: 'application/json' });
@@ -91,7 +92,7 @@ class Api {
         },
         (error) => {
           logFailure(fetchUrl, request, error);
-          reject(new Error({ error, success: false, message: 'Unexpected error occurred.' }));
+          reject(new Error(error));
         });
       });
     };

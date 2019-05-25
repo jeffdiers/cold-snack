@@ -55,16 +55,12 @@ export const postLogin = (req, res, next) => {
   const user = req.body;
   if (!user.email) {
     return res.status(401).json({
-      errors: {
-        email: 'is required',
-      },
+      errors: 'email is required',
     });
   }
   if (!user.password) {
     return res.status(401).json({
-      errors: {
-        password: 'is required',
-      },
+      errors: 'password is required',
     });
   }
   return passport.authenticate('local', { session: false }, (err, passportUser, info) => {
@@ -72,7 +68,10 @@ export const postLogin = (req, res, next) => {
     if (passportUser) {
       const finalUser = passportUser;
       finalUser.token = passportUser.generateJWT();
-      return res.status(200).json({ user: finalUser.toAuthJSON() });
+      res.status(200)
+      .set('Authorization', `Token ${finalUser.token}`)
+      .json({ success: true, user: finalUser.toAuthJSON() })
+      return
     }
     return res.status(400).json(info);
   })(req, res, next);

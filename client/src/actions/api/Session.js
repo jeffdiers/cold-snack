@@ -3,6 +3,7 @@ import Api from './Api';
 
 const authorizationHandler = (response) => {
   const authToken = response.headers.get('Authorization');
+  console.log(response, 'AUTH')
   if (authToken) {
     Api.authToken = authToken;
   }
@@ -21,9 +22,11 @@ class Session {
       return Api.delete(this.URL);
     }
 
-    emailLogin(login, password) {
-      const params = { login, password };
-      return Api.post(Session.URL, params).then(authorizationHandler);
+    emailLogin(email, password) {
+      const params = { email, password };
+      return Api.post(Session.URL, params)
+        .then(authorizationHandler)
+        .catch(error => error);
     }
 
     logout() {
