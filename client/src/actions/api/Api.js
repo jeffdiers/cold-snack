@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import fetch from 'isomorphic-fetch';
 import sessionStorage from '../../lib/sessionStorage';
-import ENVIRONMENT from './Env';
 
 let AUTH_TOKEN = sessionStorage.getAuthToken();
 
@@ -82,7 +81,7 @@ class Api {
       }
       if (AUTH_TOKEN) headers.set('Authorization', AUTH_TOKEN);
       request.headers = headers;
-      const fetchUrl = `${Api.env.baseURL}${url}`;
+      const fetchUrl = `/api/${url}`;
 
       return new Promise((resolve, reject) => {
         fetch(fetchUrl, request).then((response) => {
@@ -108,10 +107,6 @@ class Api {
 
     static set authToken(value) {
       AUTH_TOKEN = sessionStorage.setToken(value);
-    }
-
-    static env = {
-      ...ENVIRONMENT,
     }
 }
 

@@ -3,7 +3,6 @@ import Api from './Api';
 
 const authorizationHandler = (response) => {
   const authToken = response.headers.get('Authorization');
-  console.log(response, 'AUTH')
   if (authToken) {
     Api.authToken = authToken;
   }
