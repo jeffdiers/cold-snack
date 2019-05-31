@@ -50,7 +50,7 @@ class App extends Component {
             />
           ))
           }
-          <Route exact path="*" component={NotFound} />
+          <Route exact path="/*" component={NotFound} />
         </Switch>
       </div>
     );
