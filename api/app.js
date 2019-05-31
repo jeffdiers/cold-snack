@@ -42,6 +42,10 @@ app.use((req, res, next) => {
 
 app.use('/api/', indexRouter);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 // error handler
 app.use((err, req, res) => {
   // set locals, only providing error in development
