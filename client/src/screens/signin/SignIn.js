@@ -2,7 +2,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import {
   Button, Col, Form, FormGroup, Input, Label, Row,
 } from 'reactstrap';
@@ -25,7 +25,6 @@ class SignIn extends Component {
     authenticateUser = () => {
       const { authenticateUser } = this.props;
       const { email, password } = this.state;
-      console.log(email, password)
       return authenticateUser(email, password);
     };
 
@@ -34,7 +33,7 @@ class SignIn extends Component {
       const { email, password } = this.state;
 
       if (isLoggedIn) {
-        return <Redirect to="/" />;
+        return <Redirect to="/home" />;
       }
 
       return (

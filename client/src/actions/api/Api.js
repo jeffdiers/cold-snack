@@ -23,7 +23,7 @@ const logFailure = (url, request, error) => {
 const handleFailedRequest = (fetchUrl, request, response, reject) => {
   response.json().then(
     (data) => {
-      console.log(data)
+      console.log(data);
       logRejection(fetchUrl, request, response, data);
       reject(data);
     },

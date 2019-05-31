@@ -3,11 +3,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  BrowserRouter as Router, Route, Redirect,
+  BrowserRouter as Router, Route, Redirect, Switch,
 } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import { SignInContainer } from './signin';
 import Home from './home';
+import NotFound from './notFound';
 
 const MENU_ITEMS = [
   {
@@ -37,8 +38,9 @@ class App extends Component {
   renderRoutes() {
     return (
       <div style={{ paddingTop: 20 }}>
-        <Route style={{ paddingTop: 20 }} path="/login" component={SignInContainer} />
-        {
+        <Switch>
+          <Route style={{ paddingTop: 20 }} path="/login" component={SignInContainer} />
+          {
           MENU_ITEMS.map(screen => (
             <Route
               path={screen.route}
@@ -47,7 +49,9 @@ class App extends Component {
               render={this.checkAuth(screen.component)}
             />
           ))
-        }
+          }
+          <Route exact path="*" component={NotFound} />
+        </Switch>
       </div>
     );
   }

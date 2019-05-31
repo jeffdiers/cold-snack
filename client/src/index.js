@@ -5,6 +5,7 @@ import './index.css';
 import AppContainer from './screens/AppContainer';
 import * as serviceWorker from './serviceWorker';
 import store from './store/store';
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <Provider store={store}>
