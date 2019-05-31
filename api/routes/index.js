@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import createError from 'http-errors';
+import path from 'path';
 import * as users from '../controllers/users';
 import auth from '../middleware/auth';
 
@@ -44,13 +44,8 @@ router.post('/users/', auth('basic'), users.forPostQuery);
 // router.put("/users/:id", users.submit);
 
 /* GET home page. */
-router.get('/', (req, res) => {
-  res.send('respond with a resource');
-});
-
-// catch 404 and forward to error handler
-router.use((req, res, next) => {
-  next(createError(404));
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 module.exports = router;
