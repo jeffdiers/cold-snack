@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import path from 'path';
 import * as users from '../controllers/users';
+import * as sessions from '../controllers/sessions';
 import auth from '../middleware/auth';
 
 /**
@@ -23,7 +24,11 @@ router.get('/users/', auth('admin'), users.getAll);
 /**
 * user login
 */
-router.post('/users/login', auth('basic'), users.postLogin);
+// router.post('/users/login', auth('basic'), users.postLogin);
+
+router.post('/sessions', sessions.login);
+
+router.delete('/sessions/', sessions.logout);
 
 /**
  * Updates a User on the database

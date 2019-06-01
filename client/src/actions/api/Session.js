@@ -9,8 +9,15 @@ const authorizationHandler = (response) => {
   return Api.getResponseData(response);
 };
 
+const userHandler = (response) => {
+  const { user } = response;
+  if (user) {
+    Api.currentUser = user;
+  }
+};
+
 class Session {
-    static URL = '/users/login';
+    static URL = 'sessions';
 
     static SIGNUP_URL = '/sessions/email';
 
@@ -18,14 +25,19 @@ class Session {
 
     delete() {
       Api.authToken = null;
-      return Api.delete(this.URL);
+      return Api.delete(Session.URL);
     }
 
-    emailLogin(email, password) {
+    async emailLogin(email, password) {
       const params = { email, password };
-      return Api.post(Session.URL, params)
-        .then(authorizationHandler)
-        .catch(error => error);
+      try {
+        const response = await Api.post(Session.URL, params);
+        const authResponse = await authorizationHandler(response);
+        userHandler(authResponse);
+        return authResponse;
+      } catch (error) {
+        return error;
+      }
     }
 
     logout() {

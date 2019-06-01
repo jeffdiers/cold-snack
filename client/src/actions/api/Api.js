@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 import sessionStorage from '../../lib/sessionStorage';
 
 let AUTH_TOKEN = sessionStorage.getAuthToken();
+let AUTHENTICATED_USER = sessionStorage.getUser();
 
 const logRejection = (url, request, response, text = '') => {
   console.warn(` ------ API request rejected
@@ -107,6 +108,15 @@ class Api {
 
     static set authToken(value) {
       AUTH_TOKEN = sessionStorage.setToken(value);
+    }
+
+    static get currentUser() {
+      AUTHENTICATED_USER = sessionStorage.getUser();
+      return AUTHENTICATED_USER;
+    }
+
+    static set currentUser(value) {
+      AUTHENTICATED_USER = sessionStorage.setUser(value);
     }
 }
 

@@ -1,4 +1,3 @@
-import passport from 'passport';
 import User from '../models/User';
 
 require('dotenv').config();
@@ -50,31 +49,6 @@ export const getAll = (req, res) => {
   //   });
   // });
 */
-
-export const postLogin = (req, res, next) => {
-  const user = req.body;
-  if (!user.email) {
-    return res.status(401).json({
-      errors: 'email is required',
-    });
-  }
-  if (!user.password) {
-    return res.status(401).json({
-      errors: 'password is required',
-    });
-  }
-  return passport.authenticate('local', { session: false }, (err, passportUser, info) => {
-    if (err) return next(err);
-    if (passportUser) {
-      const finalUser = passportUser;
-      finalUser.token = passportUser.generateJWT();
-      return res.status(200)
-        .set('Authorization', `Token ${finalUser.token}`)
-        .json({ success: true, user: finalUser.toAuthJSON() });
-    }
-    return res.status(400).json(info);
-  })(req, res, next);
-};
 
 /**
  * Executes a query to submit a new User to the database.

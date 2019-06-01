@@ -22,6 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "lint": "npx eslint src/. --fix",
     "build": "react-scripts build && rm -rf ../api/public && cp -a build/. ../api/public/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -41,7 +42,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:4200/api/",
+  "proxy": "http://localhost:4200/",
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",

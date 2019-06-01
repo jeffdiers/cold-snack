@@ -7,12 +7,16 @@ import {
 } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import { SignInContainer } from './signin';
-import Home from './home';
+import HomeContainer from './home';
 import NotFound from './notFound';
+import Admin from './admin';
 
 const MENU_ITEMS = [
   {
-    title: 'Home', route: '/home', component: Home, exact: true, mainMenu: true,
+    title: 'Home', route: '/home', component: HomeContainer, exact: true, mainMenu: true,
+  },
+  {
+    title: 'Admin', route: '/admin', component: Admin, exact: true, mainMenu: true,
   },
 ];
 
@@ -35,6 +39,12 @@ class App extends Component {
       ));
   }
 
+  checkRole() {
+    const { currentUser } = this.props;
+
+    return currentUser.role === 'admin' && <Admin />;
+  }
+
   renderRoutes() {
     return (
       <div style={{ paddingTop: 20 }}>
@@ -50,6 +60,7 @@ class App extends Component {
             />
           ))
           }
+          {/* <Route exact path="/admin" render={this.checkRole()} /> */}
           <Route exact path="/*" component={NotFound} />
         </Switch>
       </div>

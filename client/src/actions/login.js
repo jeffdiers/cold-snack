@@ -22,7 +22,6 @@ export const userLoginFailure = result => ({
 export const authenticateUser = (email, password) => (dispatch) => {
   dispatch(userLogin());
   return session.emailLogin(email, password).then((result) => {
-    console.log(result)
     if (result.success) {
       return dispatch(userLoginSuccess(result));
     }
