@@ -9,3 +9,4 @@ git commit -m "deploy version x.x.x"
 cd api && eb deploy
 ```
 
+Template for a React based authentication/authorization web app
